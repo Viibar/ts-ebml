@@ -2,11 +2,11 @@
 /// <reference types="node"/>
 /// <reference types="commander"/>
 import { Decoder, Encoder, Reader, tools } from "./";
-import com = require("commander");
+import { program } from "commander";
 import fs = require("fs");
 const version = require("../package.json").version;
 
-com
+program
   .version(version)
   .usage("[options] <*.webm>")
   .option(
@@ -22,13 +22,13 @@ com
   .arguments("<*.webm>")
   .parse(process.argv);
 
-const { args } = com;
+const { args } = program;
 
 if (args.length < 1) {
   process.exit();
 }
 
-if (com.seekable) {
+if (program.opts().seekable) {
   const decoder = new Decoder();
   const reader = new Reader();
   reader.logging = false;
@@ -49,7 +49,7 @@ if (com.seekable) {
     tools.concat([new Buffer(refinedMetadataBuf), body]).buffer
   );
   process.stdout.write(refined);
-} else if (com.keyframe) {
+} else if (program.opts().keyframe) {
   const decoder = new Decoder();
   let TrackType = -1;
   let TrackNumber = -1;
