@@ -15,7 +15,7 @@ program
   )
   .option(
     "-k, --keyframe",
-    "TimecodeScale & Timecode & SimpleBlock(VideoTrack && keyframe) ebml elements pass filter for thumbnails(Random Access Points)"
+    "TimestampScale & Timestamp & SimpleBlock(VideoTrack && keyframe) ebml elements pass filter for thumbnails(Random Access Points)"
   )
   //.option('-b, --bbq-sauce', 'Add bbq sauce')
   //.option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
@@ -71,9 +71,9 @@ if (program.opts().seekable) {
         TrackNumber = elm.value;
       } else if (elm.type === "s" && elm.name === "CodecID") {
         CodecID = elm.value;
-      } else if (elm.type === "u" && elm.name === "TimecodeScale") {
+      } else if (elm.type === "u" && elm.name === "TimestampScale") {
         process.stdout.write(new Buffer(new Encoder().encode([elm])));
-      } else if (elm.type === "u" && elm.name === "Timecode") {
+      } else if (elm.type === "u" && elm.name === "Timestamp") {
         process.stdout.write(new Buffer(new Encoder().encode([elm])));
       } else if (elm.type === "b" && elm.name === "SimpleBlock") {
         const o = tools.ebmlBlock(elm.data);

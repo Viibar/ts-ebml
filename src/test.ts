@@ -175,11 +175,11 @@ QUnit.test("handwrite-encoder", async (assert: Assert) => {
     { name: "SeekHead", type: "m", isEnd: false },
     { name: "SeekHead", type: "m", isEnd: true },
     { name: "Info", type: "m", isEnd: false },
-    { name: "TimecodeScale", type: "u", value: 1000000 },
+    { name: "TimestampScale", type: "u", value: 1000000 },
     { name: "Info", type: "m", isEnd: true },
     { name: "Duration", type: "f", value: 0.0 },
     { name: "Cluster", type: "m", unknownSize: true, isEnd: false },
-    { name: "Timecode", type: "u", value: 1 },
+    { name: "Timestamp", type: "u", value: 1 },
     { name: "SimpleBlock", type: "b", value: new Buffer(1024) },
   ];
   const binarized = tagStream.map(tools.encodeValueToBuffer);
@@ -376,7 +376,7 @@ function create_recorder_helper_test(file: string) {
       const assertion = data.every(
         (elm) =>
           elm.name === "Cluster" ||
-          elm.name === "Timecode" ||
+          elm.name === "Timestamp" ||
           elm.name === "SimpleBlock"
       );
       assert.ok(assertion, "element check");
