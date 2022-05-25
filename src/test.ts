@@ -203,6 +203,7 @@ QUnit.test("handwrite-encoder", async (assert: Assert) => {
 QUnit.module("Reader");
 
 const MEDIA_RECORDER_WEBM_FILE_LIST = [
+  "./chrome101.webm",
   "./chrome57.webm",
   // last2timecode(video, audio): ((7.493s, 7.552s), (7.493s, 7.552s))
   // Chrome57: 7.612s ~= 7.611s = 7.552s + (7.552s - 7.493s) // ???
@@ -231,6 +232,16 @@ function create_webp_test(file: string) {
     const webm_buf = await res.arrayBuffer();
     const elms = new Decoder().decode(webm_buf);
     const WebPs = tools.WebPFrameFilter(elms);
+
+    if (WebPs.length === 0) {
+      // WebPFrameFilter does not support VP9. Skip test.
+      assert.ok(
+        elms.find(
+          (elm) =>
+            elm.type === "s" && elm.name === "CodecID" && elm.value === "V_VP9"
+        )
+      );
+    }
 
     for (const WebP of WebPs) {
       const src = URL.createObjectURL(WebP);
