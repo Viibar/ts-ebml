@@ -12,3 +12,4 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn run tsc --noEmit
       - run: yarn test
+      - run: test -n `git diff`
