@@ -132,6 +132,13 @@ npm run test  # build test
 npm run example # build example
 ```
 
+## see testing results
+
+```sh
+npm start # start http-server
+# then open http://localhost:8080/test/test.html by web browser.
+```
+
 ## debugging tools
 
 * https://www.matroska.org/downloads/mkvalidator.html
