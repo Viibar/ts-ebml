@@ -20,6 +20,7 @@
     "examples_bsd": "tsc; for file in `find lib -name 'example_*.js' -type f -print`; do browserify lib/$(basename $file) -o test/$(basename $file); done",
     "check": "tsc -w --noEmit -p ./",
     "lint": "tslint -c ./tslint.json --project ./tsconfig.json --type-check",
+    "fmt": "prettier -w ./src",
     "doc": "typedoc --mode modules --out doc --disableOutputCheck"
   },
   "repository": {
@@ -56,6 +57,7 @@
     "espower-cli": "^1.1.0",
     "power-assert": "^1.4.4",
     "power-assert-formatter": "^1.4.1",
+    "prettier": "^2.6.2",
     "qunit-tap": "^1.5.1",
     "qunitjs": "^2.4.0",
     "tslint": "^5.13.1",
