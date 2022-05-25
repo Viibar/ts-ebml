@@ -57,7 +57,7 @@ if (com.seekable) {
   const trackTypes = {} as {
     [TrackNumber: number]: { TrackType: number; CodecID: string };
   };
-  fs.createReadStream(args[0]).on("data", (buf) => {
+  fs.createReadStream(args[0]).on("data", (buf: Buffer) => {
     const ebmlElms = decoder.decode(buf);
     ebmlElms.forEach((elm) => {
       if (elm.type === "m" && elm.name === "TrackEntry" && elm.isEnd) {
@@ -87,7 +87,7 @@ if (com.seekable) {
   });
 } else {
   const decoder = new Decoder();
-  fs.createReadStream(args[0]).on("data", (buf) => {
+  fs.createReadStream(args[0]).on("data", (buf: Buffer) => {
     // put ebml info
     const ebmlElms = decoder.decode(buf);
     ebmlElms.forEach((elm) => {

@@ -1,6 +1,7 @@
 /// <reference types="qunit"/>
-import EBML, { Decoder, Encoder, Reader } from "./";
+import { Decoder, Encoder, Reader } from "./";
 import { tools } from "./";
+import type { EBMLElementDetail, EBMLElementValue } from "./";
 
 const Buffer = tools.Buffer;
 import QUnit = require("qunitjs");
@@ -38,7 +39,7 @@ QUnit.test("encoder-decoder", async (assert: Assert) => {
   const elms = new Decoder().decode(buf);
   const buf2 = new Encoder().encode(elms);
   const elms2 = new Decoder().decode(buf2);
-  type D = EBML.EBMLElementDetail;
+  type D = EBMLElementDetail;
   const tests = [
     {
       index: 0,
@@ -160,7 +161,7 @@ function create_encoder_decoder_test(file: string) {
 }
 
 QUnit.test("handwrite-encoder", async (assert: Assert) => {
-  const tagStream: EBML.EBMLElementValue[] = [
+  const tagStream: EBMLElementValue[] = [
     { name: "EBML", type: "m", isEnd: false },
     { name: "EBMLVersion", type: "u", value: 1 },
     { name: "EBMLReadVersion", type: "u", value: 1 },
