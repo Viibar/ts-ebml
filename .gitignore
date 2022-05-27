@@ -1,2 +1,8 @@
 node_modules/
 dist/
+
+lib/example_*.ts
+lib/example_*.js
+lib/*.ts
+lib/*.js
+test/*.js
