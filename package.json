@@ -47,7 +47,7 @@
     "ebml-block": "^1.1.0",
     "events": "^3.3.0",
     "int64-buffer": "^1.0.1",
-    "matroska": "^2.2.3"
+    "matroska": "^2.2.4"
   },
   "devDependencies": {
     "@types/qunit": "^2.0.31",
